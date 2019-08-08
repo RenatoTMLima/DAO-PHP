@@ -90,6 +90,19 @@ class Usuario{
         ));
     }
 
+    public function delete(){
+        $sql = new SQL();
+
+        $sql->query("DELETE FROM tb_usuarios WHERE id_usuario = :ID", array(
+            ":ID"=>$this->getIdUsuario()
+        ));
+
+        $this->setIdUsuario(0);
+        $this->setDeslogin("");
+        $this->setDessenha("");
+        $this->setDtcadastro(new DateTime());
+    }
+
     public function __toString()
     {
         return json_encode(array(
